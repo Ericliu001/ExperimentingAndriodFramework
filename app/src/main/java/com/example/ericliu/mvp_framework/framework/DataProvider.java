@@ -10,7 +10,7 @@ public enum DataProvider {
     INSTANCE;
 
 
-    private Map<Class<?>, Map<String, Object>> tables = new HashMap<>();
+    private Map<Class<?>, Map> tables = new HashMap<>();
 //    private Map<String, Object> rows = new HashMap<>();
 
 
@@ -28,10 +28,12 @@ public enum DataProvider {
             throw new IllegalArgumentException("data should not be null.");
         }
 
-//        rows.put(transactionId, data);
         if (!tables.containsKey(data.getClass())) {
+            Map<String, Class<T>> rows = new HashMap<>();
             tables.put(data.getClass(), rows);
         }
+
+        tables.get(data.getClass()).put(transactionId, data);
 
     }
 
