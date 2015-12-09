@@ -29,7 +29,7 @@ public enum DataProvider {
         }
 
         if (!tables.containsKey(data.getClass())) {
-            Map<String, Class<T>> rows = new HashMap<>();
+            Map<String, T> rows = new HashMap<>();
             tables.put(data.getClass(), rows);
         }
 
@@ -37,8 +37,12 @@ public enum DataProvider {
 
     }
 
-    public Object get(String transactionId) {
-
+    public <T> T get(Class<T> type, String transactionId) {
+        Map<String, T> rows = tables.get(type);
+        if (rows == null) {
+            return null;
+        }
+        return rows.get(transactionId);
     }
 
 }
