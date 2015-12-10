@@ -11,7 +11,6 @@ public enum DataProvider {
 
 
     private Map<Class<?>, Map> tables = new HashMap<>();
-//    private Map<String, Object> rows = new HashMap<>();
 
 
     /**
@@ -37,7 +36,7 @@ public enum DataProvider {
 
     }
 
-    public <T> T get(Class<T> type, String transactionId) {
+    public <T> T get(String transactionId, Class<T> type) {
         Map<String, T> rows = tables.get(type);
         if (rows == null) {
             return null;
