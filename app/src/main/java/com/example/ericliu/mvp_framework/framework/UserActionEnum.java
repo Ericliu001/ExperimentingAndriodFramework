@@ -21,6 +21,6 @@ package com.example.ericliu.mvp_framework.framework;
  */
 public interface UserActionEnum {
 
-    public int getId();
+     int getId();
 
 }
